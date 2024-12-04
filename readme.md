@@ -16,7 +16,7 @@ This project is a full-stack skill sharing application built with **React** (fro
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/patilchirag2392/patilchirag_webdev_assignments/tree/Assignment-10
+   git clone https://github.com/patilchirag2392/web_finalproject_group3/tree/main
    ```
 
 2. **Backend setup**:
@@ -44,3 +44,13 @@ This project is a full-stack skill sharing application built with **React** (fro
 Frontend: React, Material UI, Axios
 
 Backend: Node.js, Express, MongoDB, Mongoose, Redux
+
+### Team members
+
+[Sujal Anil Dusane](https://github.com/sujaldusane)
+[Chirag Umesh Patil](https://github.com/patilchirag2392)
+[Aditya Rajesh Hasija](https://github.com/adityahasija3)
+[Mayur Kirtibhai Patel](https://github.com/mayurpatel20)
+[Parva Pareshkumar Mehta](https://github.com/Parvamehta123-creator)
+
+
