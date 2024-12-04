@@ -1,3 +1,6 @@
+
+
+
 // import React, { useEffect, useState } from 'react';
 // import { Container, Typography, Card, CardContent, TextField, Button, Avatar } from '@mui/material';
 // import { useSelector } from 'react-redux';
@@ -33,7 +36,7 @@
 
 //   const handlePhotoChange = (event) => {
 //     if (event.target.files.length > 0) {
-//       setProfilePhoto(event.target.files[0]);
+//       setProfilePhoto(event.target.files[0]); // Temporarily set file object for preview
 //     }
 //   };
 
@@ -52,6 +55,7 @@
 //         },
 //       });
 //       setProfile(response.data.user);
+//       setProfilePhoto(response.data.user.profilePhoto); // Set updated photo URL
 //       setEditing(false);
 //       alert('Profile updated successfully!');
 //     } catch (error) {
@@ -79,15 +83,17 @@
 //           <Typography variant="h4" style={{ fontWeight: 700, marginBottom: '20px' }}>
 //             My Profile
 //           </Typography>
-//           {profilePhoto && (
-//             <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-//               <Avatar
-//                 alt={profile.fullName}
-//                 src={profilePhoto instanceof File ? URL.createObjectURL(profilePhoto) : profilePhoto}
-//                 style={{ width: '100px', height: '100px', margin: '0 auto' }}
-//               />
-//             </div>
-//           )}
+//           <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+//           <Avatar
+//   alt={profile.fullName}
+//   src={
+//     profilePhoto instanceof File
+//       ? URL.createObjectURL(profilePhoto) // Preview uploaded photo
+//       : profilePhoto ? `http://localhost:4000${profilePhoto}` : '/images/default-avatar.png' // Serve from server
+//   }
+//   style={{ width: '100px', height: '100px', margin: '0 auto' }}
+// />
+//           </div>
 //           {editing ? (
 //             <>
 //               <TextField
@@ -104,7 +110,12 @@
 //                 onChange={(e) => setEmail(e.target.value)}
 //                 style={{ marginBottom: '10px' }}
 //               />
-//               <input type="file" accept="image/*" onChange={handlePhotoChange} />
+//               <input
+//                 type="file"
+//                 accept="image/*"
+//                 onChange={handlePhotoChange}
+//                 style={{ marginTop: '10px' }}
+//               />
 //               <div style={{ marginTop: '20px' }}>
 //                 <Button variant="contained" color="primary" onClick={handleUpdateProfile}>
 //                   Save Changes
@@ -147,6 +158,7 @@
 // }
 
 // export default Profile;
+
 
 
 
@@ -226,85 +238,124 @@ function Profile() {
   }
 
   return (
-    <Container style={{ marginTop: '30px', maxWidth: '600px' }}>
-      <Card style={{ padding: '20px', boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)' }}>
-        <CardContent>
-          <Typography variant="h4" style={{ fontWeight: 700, marginBottom: '20px' }}>
-            My Profile
-          </Typography>
-          <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-          <Avatar
-  alt={profile.fullName}
-  src={
-    profilePhoto instanceof File
-      ? URL.createObjectURL(profilePhoto) // Preview uploaded photo
-      : profilePhoto ? `http://localhost:4000${profilePhoto}` : '/images/default-avatar.png' // Serve from server
-  }
-  style={{ width: '100px', height: '100px', margin: '0 auto' }}
-/>
-          </div>
-          {editing ? (
-            <>
-              <TextField
-                fullWidth
-                label="Full Name"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                style={{ marginBottom: '10px' }}
-              />
-              <TextField
-                fullWidth
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                style={{ marginBottom: '10px' }}
-              />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handlePhotoChange}
-                style={{ marginTop: '10px' }}
-              />
-              <div style={{ marginTop: '20px' }}>
-                <Button variant="contained" color="primary" onClick={handleUpdateProfile}>
-                  Save Changes
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={() => setEditing(false)}
-                  style={{ marginLeft: '10px' }}
-                >
-                  Cancel
-                </Button>
-              </div>
-            </>
-          ) : (
-            <>
-              <Typography variant="body1" style={{ marginBottom: '10px' }}>
-                <strong>Name:</strong> {profile.fullName}
-              </Typography>
-              <Typography variant="body1" style={{ marginBottom: '10px' }}>
-                <strong>Email:</strong> {profile.email}
-              </Typography>
-              <Typography variant="body1" style={{ marginBottom: '10px' }}>
-                <strong>Role:</strong> {profile.type === 'instructor' ? 'Instructor' : 'User'}
-              </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => setEditing(true)}
-                style={{ marginTop: '20px' }}
-              >
-                Edit Profile
-              </Button>
-            </>
-          )}
-        </CardContent>
-      </Card>
-    </Container>
+    <div>
+      {/* Hero Section */}
+      <div
+        style={{
+          backgroundImage: 'url("/images/profile-banner.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          padding: '40px 20px',
+          color: 'white',
+          textAlign: 'center',
+        }}
+      >
+        <Avatar
+          alt={profile.fullName}
+          src={
+            profilePhoto instanceof File
+              ? URL.createObjectURL(profilePhoto) // Preview uploaded photo
+              : profilePhoto
+              ? `http://localhost:4000${profilePhoto}`
+              : '/images/default-avatar.png' // Serve from server
+          }
+          style={{
+            width: '150px', // Increased width
+            height: '150px', // Increased height
+            margin: '0 auto 10px auto',
+            border: '4px solid white',
+          }}
+        />
+        <Typography variant="h4" style={{ fontWeight: 700 }}>
+          {profile.fullName}
+        </Typography>
+        <Typography variant="subtitle1">{profile.email}</Typography>
+      </div>
+
+      {/* Profile Details */}
+      <Container style={{ marginTop: '30px', maxWidth: '600px' }}>
+        <Card
+          style={{
+            padding: '20px',
+            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
+            borderRadius: '10px',
+          }}
+        >
+          <CardContent>
+            {editing ? (
+              <>
+                <Typography variant="h5" style={{ marginBottom: '20px', fontWeight: 600 }}>
+                  Edit Profile
+                </Typography>
+                <TextField
+                  fullWidth
+                  label="Full Name"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  style={{ marginBottom: '20px' }}
+                />
+                <TextField
+                  fullWidth
+                  label="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={{ marginBottom: '20px' }}
+                />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePhotoChange}
+                  style={{ marginBottom: '20px' }}
+                />
+                <div style={{ textAlign: 'center' }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleUpdateProfile}
+                    style={{ marginRight: '10px' }}
+                  >
+                    Save Changes
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    onClick={() => setEditing(false)}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <>
+                <Typography variant="h5" style={{ marginBottom: '20px', fontWeight: 600 }}>
+                  Profile Details
+                </Typography>
+                <Typography variant="body1" style={{ marginBottom: '10px' }}>
+                  <strong>Name:</strong> {profile.fullName}
+                </Typography>
+                <Typography variant="body1" style={{ marginBottom: '10px' }}>
+                  <strong>Email:</strong> {profile.email}
+                </Typography>
+                <Typography variant="body1" style={{ marginBottom: '10px' }}>
+                  <strong>Role:</strong> {profile.type === 'instructor' ? 'Instructor' : 'User'}
+                </Typography>
+                <div style={{ textAlign: 'center' }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => setEditing(true)}
+                    style={{ marginTop: '20px' }}
+                  >
+                    Edit Profile
+                  </Button>
+                </div>
+              </>
+            )}
+          </CardContent>
+        </Card>
+      </Container>
+    </div>
   );
 }
 
 export default Profile;
-
