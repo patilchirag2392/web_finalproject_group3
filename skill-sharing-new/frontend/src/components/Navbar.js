@@ -249,6 +249,9 @@ function Navbar() {
               >
                 Courses
               </Button>
+
+   
+
               {role === 'instructor' && (
                 <Button
                   component={Link}
