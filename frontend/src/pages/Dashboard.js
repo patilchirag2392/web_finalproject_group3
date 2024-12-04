@@ -89,7 +89,7 @@ function Dashboard() {
                 component="img"
                 alt={course.title}
                 height="160"
-                image={course.thumbnail || 'https://via.placeholder.com/160'} 
+                // image={course.thumbnail || 'https://via.placeholder.com/160'} 
               />
               <CardContent>
                 <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '8px' }}>
