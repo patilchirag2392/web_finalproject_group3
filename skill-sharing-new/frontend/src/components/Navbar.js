@@ -239,6 +239,18 @@ function Navbar() {
               </Button>
               <Button
                 component={Link}
+                to="/about-us"
+                style={{
+                  color: 'white',
+                  textTransform: 'capitalize',
+                  fontWeight: 500,
+                  fontSize: '16px',
+                }}
+              >
+                About Us
+              </Button>
+              <Button
+                component={Link}
                 to="/courses"
                 style={{
                   color: 'white',

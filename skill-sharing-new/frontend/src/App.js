@@ -12,6 +12,9 @@ import Dashboard from './pages/Dashboard';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 
+import AboutUs from './pages/Aboutus'; // Matching updated file name
+import Aboutus from './pages/Aboutus';
+
 function ProtectedRoute({ children, allowedRoles }) {
   const { isAuthenticated, role } = useSelector((state) => state.auth);
 
@@ -52,6 +55,14 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={['instructor', 'user']}>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/about-us"
+          element={
+            <ProtectedRoute allowedRoles={['instructor', 'user']}>
+              <Aboutus />
             </ProtectedRoute>
           }
         />
