@@ -24,6 +24,10 @@ This project is a full-stack skill sharing application built with **React** (fro
    ```bash
     cd backend
    ```
+   Install dependencies:
+   ```bash
+    npm install
+   ```
     Start the backend server:
    ```bash
     node server.js
@@ -32,8 +36,12 @@ This project is a full-stack skill sharing application built with **React** (fro
 4. **Frontend Setup**:
     Go to the frontend folder:
    ```bash
-    cd ../frontend
+    cd frontend
     ```
+   Install dependencies:
+   ```bash
+    npm install
+   ```
     Start the React development server:
    ```bash
     npm start
