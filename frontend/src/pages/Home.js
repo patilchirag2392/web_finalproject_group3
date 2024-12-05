@@ -88,21 +88,25 @@ function Home() {
     Join thousands of learners upgrading their skills and advancing their careers.
   </Typography>
   <Button
-    variant="contained"
-    size="large"
-    sx={{
-      backgroundColor: 'white',
-      color: '#6a11cb',
-      padding: '15px 40px',
-      fontSize: '18px',
-      fontWeight: 'bold',
-      '&:hover': { backgroundColor: '#f0f0f0', transform: 'scale(1.05)' },
-      transition: 'all 0.3s ease-in-out',
-    }}
-    onClick={() => navigate('/courses')}
-  >
-    Explore Courses
-  </Button>
+  variant="contained"
+  size="large"
+  sx={{
+    backgroundColor: 'white',
+    color: '#6a11cb',
+    padding: '15px 40px',
+    fontSize: '18px',
+    fontWeight: 'bold',
+    '&:hover': {
+      backgroundColor: '#6a11cb', // Change to purple on hover
+      color: 'white', // Change text color to white on hover
+      transform: 'scale(1.05)',
+    },
+    transition: 'all 0.3s ease-in-out',
+  }}
+  onClick={() => navigate('/courses')}
+>
+  Explore Courses
+</Button>
 </Box>
 
       {/* Why Choose Us Section */}
