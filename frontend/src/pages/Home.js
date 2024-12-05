@@ -11,6 +11,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import DevicesIcon from '@mui/icons-material/Devices';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 function Home() {
   const navigate = useNavigate();
@@ -60,48 +61,49 @@ function Home() {
       <AppBar position="static" sx={{ background: '#6a11cb', padding: '10px 0' }}>
         <Toolbar sx={{ justifyContent: 'center' }}>
           <Typography variant="h4" sx={{ color: 'white', fontWeight: 'bold' }}>
-            Skillport
+            Welcome to Skillport - A Skill-sharing Platform
           </Typography>
         </Toolbar>
       </AppBar>
 
-      {/* Hero Section */}
-      <Box
-        sx={{
-          background: 'linear-gradient(to right, #6a11cb, #2575fc)',
-          minHeight: '400px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-          color: 'white',
-          textAlign: 'center',
-          padding: '50px',
-        }}
-      >
-        <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 3 }}>
-          Learn Anytime, Anywhere
-        </Typography>
-        <Typography variant="h5" sx={{ opacity: 0.9, mb: 4, maxWidth: '800px' }}>
-          Join thousands of learners upgrading their skills and advancing their careers.
-        </Typography>
-        <Button
-          variant="contained"
-          size="large"
-          sx={{
-            backgroundColor: 'white',
-            color: '#6a11cb',
-            padding: '15px 40px',
-            fontSize: '18px',
-            fontWeight: 'bold',
-            '&:hover': { backgroundColor: '#f0f0f0', transform: 'scale(1.05)' },
-            transition: 'all 0.3s ease-in-out',
-          }}
-          onClick={() => navigate('/courses')}
-        >
-          Explore Courses
-        </Button>
-      </Box>
+     {/* Hero Section */}
+<Box
+  sx={{
+    background: `url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0') no-repeat center center`,
+    backgroundSize: 'cover',
+    minHeight: '400px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    color: 'white',
+    textAlign: 'center',
+    padding: '50px',
+  }}
+>
+  <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 3 }}>
+    Learn Anytime, Anywhere
+  </Typography>
+  <Typography variant="h5" sx={{ opacity: 0.9, mb: 4, maxWidth: '800px' }}>
+    Join thousands of learners upgrading their skills and advancing their careers.
+  </Typography>
+  <Button
+    variant="contained"
+    size="large"
+    sx={{
+      backgroundColor: 'white',
+      color: '#6a11cb',
+      padding: '15px 40px',
+      fontSize: '18px',
+      fontWeight: 'bold',
+      '&:hover': { backgroundColor: '#f0f0f0', transform: 'scale(1.05)' },
+      transition: 'all 0.3s ease-in-out',
+    }}
+    onClick={() => navigate('/courses')}
+  >
+    Explore Courses
+  </Button>
+</Box>
 
       {/* Why Choose Us Section */}
       <Box sx={{ padding: '80px 20px', background: '#fff' }}>
@@ -235,6 +237,62 @@ function Home() {
         </Container>
       </Box>
 
+      {/* Subscription Plans Section */}
+<Box sx={{ padding: '80px 20px', background: '#fff' }}>
+  <Container maxWidth="lg">
+    <Typography
+      variant="h3"
+      gutterBottom
+      sx={{
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginBottom: '60px',
+        color: '#333',
+      }}
+    >
+      Subscription Plans
+    </Typography>
+    <TableContainer component={Paper} sx={{ boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.15)', borderRadius: '12px' }}>
+      <Table sx={{ minWidth: 650 }} aria-label="subscription plans table">
+        <TableHead>
+          <TableRow sx={{ backgroundColor: '#6a11cb' }}>
+            <TableCell sx={{ color: 'white', fontWeight: 'bold', fontSize: '1.2rem' }}>Features</TableCell>
+            <TableCell align="center" sx={{ color: 'white', fontWeight: 'bold', fontSize: '1.2rem' }}>Basic</TableCell>
+            <TableCell align="center" sx={{ color: 'white', fontWeight: 'bold', fontSize: '1.2rem' }}>Pro</TableCell>
+            <TableCell align="center" sx={{ color: 'white', fontWeight: 'bold', fontSize: '1.2rem' }}>Enterprise</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {[
+            { feature: 'Access to Courses', basic: '✓', pro: '✓', enterprise: '✓' },
+            { feature: 'HD Video Quality', basic: '✓', pro: '✓', enterprise: '✓' },
+            { feature: 'Downloadable Resources', basic: '', pro: '✓', enterprise: '✓' },
+            { feature: 'Certificate of Completion', basic: '', pro: '✓', enterprise: '✓' },
+            { feature: 'Priority Support', basic: '', pro: '', enterprise: '✓' },
+            { feature: 'Custom Learning Paths', basic: '', pro: '', enterprise: '✓' },
+            { feature: 'Price', basic: '$9.99/mo', pro: '$19.99/mo', enterprise: 'Contact Us' },
+          ].map((row, index) => (
+            <TableRow
+              key={index}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row" sx={{ fontWeight: 'bold' }}>
+                {row.feature}
+              </TableCell>
+              <TableCell align="center">{row.basic}</TableCell>
+              <TableCell align="center">{row.pro}</TableCell>
+              <TableCell align="center">{row.enterprise}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+    <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+
+    </Box>
+  </Container>
+</Box>
+
       {/* Testimonials Section */}
       <Box sx={{ padding:'80px 20px', background:'#f9f9f9' }}>
         <Container maxWidth='lg'>
@@ -286,6 +344,63 @@ function Home() {
           </Grid>  
         </Container>  
       </Box>  
+
+{/* Skill Showcase Gallery */}
+<Box sx={{ padding: '80px 20px', background: '#f9f9f9' }}>
+  <Container maxWidth="lg">
+    <Typography
+      variant="h3"
+      gutterBottom
+      sx={{
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginBottom: '60px',
+        color: '#333',
+      }}
+    >
+      Skill Showcase Gallery
+    </Typography>
+    <Grid container spacing={4}>
+      {[
+        { title: 'Web Design Portfolio', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0', description: 'A collection of responsive websites created using HTML, CSS, and JavaScript.' },
+        { title: 'Mobile App Development', image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c', description: 'Innovative mobile applications built with React Native for iOS and Android.' },
+        { title: 'Data Visualization Project', image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fHdlYiUyMGRlc2lnbnxlbnwwfHx8fDE2OTkxOTg4OTI&ixlib=rb-4.0.3&q=80&w=1080', description: 'Interactive dashboards created using D3.js to visualize complex datasets.' },
+        { title: 'Machine Learning Model', image: 'https://images.unsplash.com/photo-1505685296765-3a2736de412f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHdlYiUyMGRlc2lnbnxlbnwwfHx8fDE2OTkxOTg4OTI&ixlib=rb-4.0.3&q=80&w=1080', description: 'A predictive model developed using Python and TensorFlow for image classification.' },
+        { title: 'UX/UI Design Case Study', image: '/images/uiuxi.png', description: 'A comprehensive case study showcasing the redesign of a popular e-commerce platform.' },
+        { title: 'Blockchain Application', image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fGFwcCUyMGRldmVsb3BtZW50fHwwfHx8fDE2OTkxOTg4ODI&ixlib=rb-4.0.3&q=80&w=1080', description: 'A decentralized application (DApp) built on Ethereum for secure transactions.' },
+      ].map((project, index) => (
+        <Grid item xs={12} sm={6} md={4} key={index}>
+          <Card
+            sx={{
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              transition: 'transform 0.3s',
+              '&:hover': {
+                transform: 'scale(1.05)',
+              },
+            }}
+          >
+            <CardMedia
+              component="img"
+              height="200"
+              image={project.image}
+              alt={project.title}
+            />
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography gutterBottom variant="h5" component="div">
+                {project.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {project.description}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
+  </Container>
+</Box>
 
        {/* Footer Section */}
        <Box
