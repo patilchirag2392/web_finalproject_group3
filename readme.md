@@ -2,6 +2,7 @@
 
 ## Overview
 
+SkillPort is an interactive platform designed to connect learners and instructors. It allows users to enroll in courses, participate in discussions, and manage personal profiles.
 This project is a full-stack skill sharing application built with **React** (frontend) and **Node.js/Express** (backend), using **MongoDB** as the database. The portal allows users to log in, view course listings, explore courses, and add it to their dashboards. There are two roles - instructor and user. There are certain pages which only instructor can access. The instructor can add courses via Postman or directly through Add Course page. Material UI is used for the frontend styling, and the application has a protected route setup to ensure only authenticated users can access certain parts of the portal.
 
 
