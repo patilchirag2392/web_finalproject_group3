@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import "./Aboutus.css";
 
-const Aboutus = () => {
+//Mange state for from data and submission feedback
+const Aboutus = () => { 
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
     notes: "",
   });
-
+  
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e) => {
+  // Update from data dynamically as user type
+  const handleInputChange = (e) => { 
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -19,7 +21,7 @@ const Aboutus = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {   // form submission, resets the form, shows feedback
     e.preventDefault();
     console.log("Form Submitted", formData);
 
@@ -87,7 +89,7 @@ const Aboutus = () => {
       {/* Meet Our Team Section */}
       <h1 className="page-title">Meet Our Team</h1>
       <div className="team-row">
-        {teamMembers.map((person) => (
+        {teamMembers.map((person) => (      // generates team member cards based on team members array
           <div key={person.id} className="team-card">
             <div className="team-image">
               <img src={person.imageUrl} alt={person.name} className="profile-image" />
@@ -156,10 +158,11 @@ const Aboutus = () => {
               required
             />
           </div>
-
+          
           <button type="submit" className="submit-button">Send</button>
         </form>
-
+         
+         {/* conditional rendering  */}
         {isSubmitted && <p className="submission-feedback">Thank you for contacting us!</p>}
       </div>
     </div>
