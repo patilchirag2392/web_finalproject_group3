@@ -38,7 +38,7 @@ function Profile() {
 
   const handlePhotoChange = (event) => {
     if (event.target.files.length > 0) {
-      setProfilePhoto(event.target.files[0]); // Temporarily set file object for preview
+      setProfilePhoto(event.target.files[0]); 
     }
   };
 
@@ -95,14 +95,14 @@ function Profile() {
           alt={profile.fullName}
           src={
             profilePhoto instanceof File
-              ? URL.createObjectURL(profilePhoto) // Preview uploaded photo
+              ? URL.createObjectURL(profilePhoto) 
               : profilePhoto
               ? `http://localhost:4000${profilePhoto}`
-              : '/images/default-avatar.png' // Serve from server
+              : '/images/default-avatar.png' 
           }
           style={{
-            width: '150px', // Increased width
-            height: '150px', // Increased height
+            width: '150px', 
+            height: '150px', 
             margin: '0 auto 10px auto',
             border: '4px solid white',
           }}

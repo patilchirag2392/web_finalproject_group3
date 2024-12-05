@@ -7,7 +7,6 @@ const path = require('path');
 const router = express.Router();
 
 
-// Configure Multer for Profile Photo Upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/profile_photos/');
@@ -19,7 +18,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Register Route
 router.post('/register', async (req, res) => {
   const { fullName, email, password, type } = req.body;
   try {
@@ -35,7 +33,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login Route
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -62,7 +59,7 @@ router.post('/login', async (req, res) => {
 
 router.put('/profile/:id', upload.single('profilePhoto'), async (req, res) => {
   try {
-    console.log('File uploaded:', req.file); // Log file details
+    console.log('File uploaded:', req.file); 
     const { id } = req.params;
     const { fullName, email } = req.body;
     const profilePhoto = req.file ? `/uploads/profile_photos/${req.file.filename}` : undefined;
@@ -82,7 +79,6 @@ router.put('/profile/:id', upload.single('profilePhoto'), async (req, res) => {
   }
 });
 
-// Get User Profile
 router.get('/profile/:id', async (req, res) => {
   try {
     const user = await User.findById(req.params.id);

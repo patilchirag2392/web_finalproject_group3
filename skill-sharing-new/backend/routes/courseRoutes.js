@@ -5,7 +5,7 @@ const Course = require('../models/Course');
 
 const router = express.Router();
 
-// Add Course
+
 router.post('/add', async (req, res) => {
   const { title, description, price, videos, instructorId, userId } = req.body; // Include userId
   try {
@@ -18,11 +18,10 @@ router.post('/add', async (req, res) => {
   }
 });
 
-// Fetch Dashboard Courses
 router.get('/dashboard', async (req, res) => {
-  const { userId } = req.query; // Expect the userId in the query params
+  const { userId } = req.query; 
   try {
-    const courses = await Course.find({ userId }); // Fetch courses belonging to the user
+    const courses = await Course.find({ userId }); 
     res.status(200).json(courses);
   } catch (error) {
     console.error('Error fetching dashboard courses:', error.message);
@@ -30,13 +29,12 @@ router.get('/dashboard', async (req, res) => {
   }
 });
 
-// Remove a Course from the Dashboard
 router.delete('/remove/:id', async (req, res) => {
-  const { userId } = req.query; // Expect userId in the query params
-  const courseId = req.params.id; // Get the course ID from the route
+  const { userId } = req.query; 
+  const courseId = req.params.id; 
 
   try {
-    const course = await Course.findOneAndDelete({ _id: courseId, userId }); // Delete only if userId matches
+    const course = await Course.findOneAndDelete({ _id: courseId, userId }); 
     if (!course) {
       return res.status(404).json({ message: 'Course not found or not associated with your dashboard' });
     }
@@ -49,7 +47,7 @@ router.delete('/remove/:id', async (req, res) => {
 
 
 
-// Get a Specific Course
+
 router.get('/get/:id', async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);
@@ -57,7 +55,7 @@ router.get('/get/:id', async (req, res) => {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    // Check if the instructor is viewing their own course
+   
     if (req.query.role === 'instructor' && course.instructorId.toString() !== req.query.userId) {
       return res.status(403).json({ message: 'You can only view courses you created.' });
     }
@@ -69,20 +67,20 @@ router.get('/get/:id', async (req, res) => {
   }
 });
 
-// Get All Courses
+
 router.get('/get', async (req, res) => {
   const { userId, role } = req.query;
 
   try {
-    console.log('Query Parameters:', { userId, role }); // Log query parameters
+    console.log('Query Parameters:', { userId, role }); 
     let courses;
 
     if (role === 'instructor') {
       courses = await Course.find({ instructorId: userId });
-      console.log('Filtered Courses for Instructor:', courses); // Log filtered courses
+      console.log('Filtered Courses for Instructor:', courses); 
     } else {
       courses = await Course.find();
-      console.log('All Courses for User:', courses); // Log all courses
+      console.log('All Courses for User:', courses); 
     }
 
     res.status(200).json(courses);

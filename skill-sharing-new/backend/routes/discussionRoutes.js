@@ -2,7 +2,6 @@ const express = require('express');
 const Discussion = require('../models/Discussion');
 const router = express.Router();
 
-// Add a comment to a course discussion
 router.post('/add', async (req, res) => {
   const { courseId, userId, content } = req.body;
 
@@ -16,7 +15,6 @@ router.post('/add', async (req, res) => {
   }
 });
 
-// Get all comments for a specific course
 router.get('/:courseId', async (req, res) => {
   try {
     const discussions = await Discussion.find({ courseId: req.params.courseId }).populate('userId', 'fullName');

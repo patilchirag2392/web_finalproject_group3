@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from '../slices/authSlice';
 
-// Load persisted state from localStorage
 const preloadedState = {
   auth: {
     isAuthenticated: JSON.parse(localStorage.getItem('isAuthenticated')) || false,
@@ -10,12 +9,11 @@ const preloadedState = {
   },
 };
 
-// Configure the Redux store
 const store = configureStore({
   reducer: {
     auth: authReducer,
   },
-  preloadedState, // Apply the preloaded state
+  preloadedState, 
 });
 
 export default store;
