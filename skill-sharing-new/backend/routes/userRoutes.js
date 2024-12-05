@@ -7,6 +7,18 @@ const path = require('path');
 const router = express.Router();
 
 
+// Configure Multer for Profile Photo Upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/profile_photos/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
+
 // Register Route
 router.post('/register', async (req, res) => {
   const { fullName, email, password, type } = req.body;
@@ -46,17 +58,7 @@ router.post('/login', async (req, res) => {
 
 
 
-// Configure Multer for Profile Photo Upload
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/profile_photos/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
 
-const upload = multer({ storage });
 
 router.put('/profile/:id', upload.single('profilePhoto'), async (req, res) => {
   try {
